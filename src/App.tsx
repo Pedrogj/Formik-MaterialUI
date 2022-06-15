@@ -1,7 +1,11 @@
+import { FormUser } from "./components/form/FormUser";
+import { Navbar } from "./components/navbar/Navbar";
+
 function App() {
   return (
     <>
-      <h1>React App</h1>
+      <Navbar />
+      <FormUser />
     </>
   );
 }
