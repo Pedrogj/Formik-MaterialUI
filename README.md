@@ -16,7 +16,7 @@ Will need node and npm will install globally on your machine.
 1. Clone repository:
 
 ```bach
-https://formik-react-mui.netlify.app/
+https://github.com/Pedrogj/Formik-MaterialUI.git
 ```
 
 2. Install dependencies:
@@ -33,7 +33,7 @@ npm start
 
 ## Deploy
 
-[DEMO](https://pedrogj.github.io/Formik-MaterialUI/)
+[DEMO](https://formik-react-mui.netlify.app/)
 
 ---
 
