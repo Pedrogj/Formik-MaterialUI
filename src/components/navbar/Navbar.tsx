@@ -7,7 +7,7 @@ export const Navbar = () => {
       <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Formik
+            React.js - Formik
           </Typography>
         </Toolbar>
       </AppBar>

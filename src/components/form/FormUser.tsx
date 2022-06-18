@@ -1,14 +1,16 @@
 import { Container, Grid, Paper, Typography } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import countries from "../../data/countries.json";
 
 import { TextFieldWrapper as TextField } from "../formUi/TextField";
 import { SelectField } from "../formUi/SelectField";
-import { DataTimePicker } from "../formUi/DataTimePicker";
 import { CheckboxField } from "../formUi/CheckboxField";
 import { ButtonUi } from "../formUi/ButtonUi";
+import { formValidation } from "../../helpers/formValidations/formValidations";
 
 const initialFormState = {
   firstName: "",
@@ -20,32 +22,9 @@ const initialFormState = {
   city: "",
   state: "",
   country: "",
-  arrivealDate: "",
-  departureDate: "",
   message: "",
   termOfServices: "",
 };
-
-const formValidation = Yup.object().shape({
-  firstName: Yup.string().required("Required"),
-  lastName: Yup.string().required("Rquired"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  phone: Yup.number()
-    .integer()
-    .typeError("Please enter a valid phone number")
-    .required("required"),
-  addressLine1: Yup.string().required("Required"),
-  addressLine2: Yup.string(),
-  city: Yup.string().required("Required"),
-  state: Yup.string().required("Required"),
-  country: Yup.string().required("Required"),
-  arrivealDate: Yup.date().required("Required"),
-  departureDate: Yup.date().required("Required"),
-  message: Yup.string(),
-  termOfServices: Yup.boolean()
-    .oneOf([true], "The terms and conditions must be accepted.")
-    .required("The terms and conditions must be accepted."),
-});
 
 export const FormUser = () => {
   return (
@@ -55,7 +34,7 @@ export const FormUser = () => {
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
       >
         <Typography component="h1" variant="h4" align="center">
-          Contact
+          Formulario
         </Typography>
         <Grid style={{ paddingTop: "10px" }}>
           <Formik
@@ -64,65 +43,71 @@ export const FormUser = () => {
             }}
             validationSchema={formValidation}
             onSubmit={(values, { resetForm }) => {
-              console.log(values);
+              // console.log(values);
               resetForm();
+              toast.success("Enviado...", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
             }}
           >
             <Form>
               <Grid container spacing={2}>
                 {/* -----------Your details------------- */}
                 <Grid item xs={12}>
-                  <Typography>Your details</Typography>
+                  <Typography>Contacto</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="firstName" label="firstName" />
+                  <TextField name="firstName" label="Nombre" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="lastName" label="lastName" />
+                  <TextField name="lastName" label="Apellido" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="email" label="email" />
+                  <TextField name="email" label="Correo electrónico" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="phone" label="phone" />
+                  <TextField name="phone" label="Teléfono" />
                 </Grid>
                 {/* -----------Address------------- */}
                 <Grid item xs={12}>
-                  <Typography>Address</Typography>
+                  <Typography>Dirección de Contacto</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="addressLine1" label="Address Line 1" />
+                  <TextField name="addressLine1" label="Dirección 1" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="addressLine2" label="Address Line 2" />
+                  <TextField
+                    name="addressLine2"
+                    label="Dirección 2 (opcional)"
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="city" label="City" />
+                  <TextField name="city" label="Ciudad" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField name="state" label="State" />
+                  <TextField name="state" label="Estado" />
                 </Grid>
                 <Grid item xs={12}>
                   <SelectField
                     name="country"
-                    label="Country"
+                    label="País"
                     options={countries}
                   />
                 </Grid>
                 {/* ------------Booking information------------ */}
                 <Grid item xs={12}>
-                  <Typography>Booking information</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <DataTimePicker name="arrivealDate" label="Arrival Date" />
-                </Grid>
-                <Grid item xs={12}>
-                  <DataTimePicker name="departureDate" label="Departure Date" />
+                  <Typography>Mensaje opcional</Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     name="message"
-                    label="Message"
+                    label="Mensaje"
                     multiline={true}
                     rows={4}
                   />
@@ -130,14 +115,15 @@ export const FormUser = () => {
                 <Grid item xs={12}>
                   <CheckboxField
                     name="termOfServices"
-                    legend="Term Of Service"
-                    label="I agree"
+                    legend="Términos y Condiciones"
+                    label="Acepto los términos"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <ButtonUi>Submit Form</ButtonUi>
+                  <ButtonUi endIcon={<SendIcon />}>Eniar</ButtonUi>
                 </Grid>
               </Grid>
+              <ToastContainer />
             </Form>
           </Formik>
         </Grid>
