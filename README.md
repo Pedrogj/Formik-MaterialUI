@@ -33,4 +33,4 @@ npm start
 
 ---
 
-![](https://github.com/Pedrogj/Formik-MaterialUI/blob/main/src/img/form.jpg)
+![](https://github.com/Pedrogj/Formik-MaterialUI/blob/main/src/img/img.jpg)
