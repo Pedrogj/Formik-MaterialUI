@@ -14,6 +14,11 @@
 Will need node and npm will install globally on your machine.
 
 1. Clone repository:
+
+```bach
+https://github.com/Pedrogj/Formik-MaterialUI.git
+```
+
 2. Install dependencies:
 
 ```bach

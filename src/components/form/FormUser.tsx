@@ -120,7 +120,7 @@ export const FormUser = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <ButtonUi endIcon={<SendIcon />}>Eniar</ButtonUi>
+                  <ButtonUi endIcon={<SendIcon />}>Enviar</ButtonUi>
                 </Grid>
               </Grid>
               <ToastContainer />
