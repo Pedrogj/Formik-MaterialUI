@@ -1,15 +1,25 @@
 import { TextField } from "@mui/material";
 import { useField } from "formik";
 
-export const TextFieldWrapper = ({ name, ...otherProps }: any) => {
+interface Props {
+  name: string;
+  label: string;
+  otherProps?: any;
+  multiline?: true;
+  maxRows?: number;
+}
+
+export const TextFieldWrapper = ({ name, label, ...otherProps }: Props) => {
   const [field, meta] = useField(name);
 
-  const configTextField = {
+  const configTextField: any = {
     ...field,
     ...otherProps,
     fullWidth: true,
     variant: "outlined",
     size: "small",
+    error: false,
+    helperText: "",
   };
 
   if (meta && meta.touched && meta.error) {
@@ -17,5 +27,5 @@ export const TextFieldWrapper = ({ name, ...otherProps }: any) => {
     configTextField.helperText = meta.error;
   }
 
-  return <TextField {...configTextField} />;
+  return <TextField label={label} {...configTextField} />;
 };

@@ -1,7 +1,14 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-export const SelectField = ({ name, options, ...otherProps }: any) => {
+interface Props {
+  name: string;
+  label: string;
+  options: any;
+  otherProps?: any;
+}
+
+export const SelectField = ({ name, options, ...otherProps }: Props) => {
   const { setFieldValue } = useFormikContext();
 
   const [field, meta] = useField(name);
@@ -11,7 +18,7 @@ export const SelectField = ({ name, options, ...otherProps }: any) => {
     setFieldValue(name, value);
   };
 
-  const configSelect = {
+  const configSelect: any = {
     ...field,
     ...otherProps,
     select: true,
@@ -19,6 +26,8 @@ export const SelectField = ({ name, options, ...otherProps }: any) => {
     fullWidth: true,
     size: "small",
     onChange: handleChange,
+    error: false,
+    helperText: "",
   };
 
   if (meta && meta.touched && meta.error) {

@@ -4,12 +4,12 @@ import { Formik, Form } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import countries from "../../data/countries.json";
+import { dataCountries } from "../../data/dataCountries";
 
-import { TextFieldWrapper as TextField } from "../formUi/TextField";
-import { SelectField } from "../formUi/SelectField";
-import { CheckboxField } from "../formUi/CheckboxField";
-import { ButtonUi } from "../formUi/ButtonUi";
+import { TextFieldWrapper as TextField } from "../formUi/textField/TextField";
+import { SelectField } from "../formUi/select/SelectField";
+import { CheckboxField } from "../formUi/checkbox/CheckboxField";
+import { ButtonUi } from "../formUi/botton/ButtonUi";
 import { formValidation } from "../../helpers/formValidations/formValidations";
 
 const initialFormState = {
@@ -24,6 +24,18 @@ const initialFormState = {
   country: "",
   message: "",
   termOfServices: "",
+};
+
+const alertMsgSend = () => {
+  toast.success("Enviado...", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 };
 
 export const FormUser = () => {
@@ -43,17 +55,8 @@ export const FormUser = () => {
             }}
             validationSchema={formValidation}
             onSubmit={(values, { resetForm }) => {
-              // console.log(values);
               resetForm();
-              toast.success("Enviado...", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
+              alertMsgSend();
             }}
           >
             <Form>
@@ -97,7 +100,7 @@ export const FormUser = () => {
                   <SelectField
                     name="country"
                     label="País"
-                    options={countries}
+                    options={dataCountries}
                   />
                 </Grid>
                 {/* ------------Booking information------------ */}
@@ -108,8 +111,8 @@ export const FormUser = () => {
                   <TextField
                     name="message"
                     label="Mensaje"
-                    multiline={true}
-                    rows={4}
+                    multiline
+                    maxRows={4}
                   />
                 </Grid>
                 <Grid item xs={12}>

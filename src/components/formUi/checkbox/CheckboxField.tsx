@@ -7,7 +7,19 @@ import {
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-export const CheckboxField = ({ name, label, legend, ...otherProps }: any) => {
+interface Props {
+  name: string;
+  label: string;
+  legend: string;
+  otherProps?: any;
+}
+
+export const CheckboxField = ({
+  name,
+  label,
+  legend,
+  ...otherProps
+}: Props) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
