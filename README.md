@@ -1,5 +1,13 @@
 # Form | Formik
 
+form made with Reactjs, MaterialUi, Formik and Yup.
+
+In this simple form we can test the experience a little
+that a user presents when filling out a form.
+
+made with Reactjs for the user interface, Formik to perform the
+tracking values/errors/visited fields and organizing validation and submission handling, Schema Validation with Yup.
+
 ## Created with:
 
 - ReactJs
