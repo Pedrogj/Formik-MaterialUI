@@ -1,20 +1,14 @@
 import { Button } from "@mui/material";
-import { useFormikContext } from "formik";
+import { buttonInterface } from "./buttonInterface";
 
-export const ButtonUi = ({ children, ...otherProps }: any) => {
-  const { submitForm } = useFormikContext();
-
-  const handleSubmit = () => {
-    submitForm();
-  };
-
-  const configButton = {
-    ...otherProps,
+export const ButtonUi = ({ name, type, endIcon }: buttonInterface) => {
+  const configButton: any = {
     variant: "contained",
     color: "primary",
     fullWidth: true,
-    onClick: handleSubmit,
+    type,
+    endIcon,
   };
 
-  return <Button {...configButton}>{children}</Button>;
+  return <Button {...configButton}>{name}</Button>;
 };

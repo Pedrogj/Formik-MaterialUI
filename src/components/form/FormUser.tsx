@@ -123,7 +123,11 @@ export const FormUser = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <ButtonUi endIcon={<SendIcon />}>Enviar</ButtonUi>
+                  <ButtonUi
+                    endIcon={<SendIcon />}
+                    type="submit"
+                    name="Enviar"
+                  />
                 </Grid>
               </Grid>
               <ToastContainer />
